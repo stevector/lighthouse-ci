@@ -141,16 +141,17 @@ class LighthouseCI {
    * Posts a comment to the PR with the latest Lighthouse scores.
    * @param {!{owner: string, repo: string, number: number}} prInfo
    * @param {!Object} lhResults Lighthouse results object.
+   * @param {!string} testUrl URL to audit.
    * @return {!Promise<number>} Lighthouse score.
    */
-  postLighthouseComment(prInfo, lhResults) {
+  postLighthouseComment(prInfo, lhResults, ReportURL) {
     let rows = '';
     lhResults.reportCategories.forEach(cat => {
       rows += `| ${cat.name} | ${Math.round(cat.score)} |\n`;
     });
 
     const body = `
-Updated [Lighthouse](https://developers.google.com/web/tools/lighthouse/) report for the changes in this PR:
+Updated [Lighthouse report](${ReportURL}) for the changes in this PR:
 
 | Category  | Score |
 | ------------- | ------------- |
