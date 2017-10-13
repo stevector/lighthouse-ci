@@ -1,9 +1,11 @@
+#!/usr/bin/env node
 'use strict';
 
+const argv = require('yargs').argv;
 const LighthouseCI = require('./lighthouse-ci.js');
-const ResultPath = process.argv.slice(2);
-const lhResults = require('' + process.argv.slice(2));
-const ResultUrl = require('' + process.argv.slice(3));
+const ResultPath = argv.resultspath;
+const lhResults = require(ResultPath);
+const ReportUrl = argv.reporturl;
 
 const CI = new LighthouseCI(process.env.GITHUB_TOKEN);
 
@@ -16,9 +18,8 @@ const prInfo = {
 };
 
 try {
-    CI.postLighthouseComment(prInfo, lhResults, ResultUrl);
+    CI.postLighthouseComment(prInfo, lhResults, ReportUrl);
     CI.assignPassFailToPR(lhResults, prInfo, prInfo);
 } catch (err) {
     CI.handleError(err, prInfo);
 }
-
