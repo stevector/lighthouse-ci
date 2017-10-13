@@ -3,6 +3,7 @@
 const LighthouseCI = require('./lighthouse-ci.js');
 const ResultPath = process.argv.slice(2);
 const lhResults = require('' + process.argv.slice(2));
+const ResultUrl = require('' + process.argv.slice(3));
 
 const CI = new LighthouseCI(process.env.GITHUB_TOKEN);
 
@@ -15,7 +16,7 @@ const prInfo = {
 };
 
 try {
-    CI.postLighthouseComment(prInfo, lhResults);
+    CI.postLighthouseComment(prInfo, lhResults, ResultUrl);
     CI.assignPassFailToPR(lhResults, prInfo, prInfo);
 } catch (err) {
     CI.handleError(err, prInfo);
