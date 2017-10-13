@@ -3,9 +3,11 @@
 
 const argv = require('yargs').argv;
 const LighthouseCI = require('./lighthouse-ci.js');
-const ResultPath = argv.resultspath;
-const lhResults = require(ResultPath);
-const ReportUrl = argv.reporturl;
+const ResultPath = process.argv.slice(2);
+// @todo, decide if I want vars coming in as command line args or global vars.
+// Or something else.
+const lhResults = require('' + process.argv.slice(2));
+const ResultUrl = process.env.REPORT_URL
 
 const CI = new LighthouseCI(process.env.GITHUB_TOKEN);
 
