@@ -2,8 +2,8 @@
 
 set -ex
 
-LIGHTHOUSE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-LIGHTHOUSE_SCRIPTS_DIR=${LIGHTHOUSE_DIR}/frontend
+LIGHTHOUSE_SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 
 cd $CIRCLE_ARTIFACTS_DIR
 lighthouse --chrome-flags="--headless --disable-gpu" ${PANTHEON_SITE_URL} --save-artifacts --save-assets --config-path=${LIGHTHOUSE_SCRIPTS_DIR}/no_pwa.js --output=json --output=html
