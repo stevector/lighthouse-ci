@@ -4,6 +4,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "github": "^9.2.0",
-    "node-fetch": "^1.6.3"
+    "node-fetch": "^1.6.3",
+    "yargs": "^9.0.1"
   }
 }
